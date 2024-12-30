@@ -166,6 +166,60 @@ export function open(...what: string[]): LayerCommand {
   };
 }
 
+const isValidURL = (url: string) => {
+  if (!url) {
+    throw new Error("Please set a URL!");
+  } else if (url.trim().length === 0) {
+    throw new Error("The URL cannot be empty!");
+  }
+
+  try {
+    new URL(url);
+  } catch (error) {
+    throw new Error("The URL is invalid!");
+  }
+}
+
+export function openWithEnv(path: string) {
+  return {
+    to: [
+    {
+        "shell_command": `export PATH=/usr/local/bin:/Users/kaidstor/.bun/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin; open -a ${path}`
+    }],
+    description: `Open ${path} with env`,
+  };
+}
+
+/**
+ * Shortcut for "open arc tab" shell command
+ */
+export function browser(url: string): LayerCommand {
+  url = !/^\S+?:\/\//i.test(url) ? "https://" + url : url;
+
+  isValidURL(url);
+
+  const script = `
+    tell application "Arc"
+      if (count of windows) is 0 then
+        make new window
+      end if
+
+      tell front window
+        make new tab with properties {URL:"${url}"}
+      end tell
+
+      activate
+    end tell
+  `;
+
+  return {
+    to: [{
+      shell_command: `osascript -e '${script}'`,
+    }],
+    description: `Open ${url}`,
+  };
+}
+
 /**
  * Utility function to create a LayerCommand from a tagged template literal
  * where each line is a shell command to be executed.
@@ -192,22 +246,9 @@ export function shell(
 }
 
 /**
- * Shortcut for managing window sizing with Rectangle
- */
-export function rectangle(name: string): LayerCommand {
-  return {
-    to: [
-      {
-        shell_command: `open -g rectangle://execute-action?name=${name}`,
-      },
-    ],
-    description: `Window: ${name}`,
-  };
-}
-
-/**
  * Shortcut for "Open an app" command (of which there are a bunch)
  */
 export function app(name: string): LayerCommand {
   return open(`-a '${name}.app'`);
 }
+

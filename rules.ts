@@ -1,9 +1,10 @@
 import fs from "fs";
 import { KarabinerRules } from "./types";
-import { createHyperSubLayers, app, open, rectangle, shell } from "./utils";
+import { createHyperSubLayers, app, open, browser, shell, openWithEnv } from "./utils";
 
 const rules: KarabinerRules[] = [
   // Define the Hyper key itself
+
   {
     description: "Hyper Key (⌃⌥⇧⌘)",
     manipulators: [
@@ -19,8 +20,8 @@ const rules: KarabinerRules[] = [
           {
             set_variable: {
               name: "hyper",
-              value: 1,
-            },
+              value: 1
+            }
           },
         ],
         to_after_key_up: [
@@ -38,66 +39,28 @@ const rules: KarabinerRules[] = [
         ],
         type: "basic",
       },
-      //      {
-      //        type: "basic",
-      //        description: "Disable CMD + Tab to force Hyper Key usage",
-      //        from: {
-      //          key_code: "tab",
-      //          modifiers: {
-      //            mandatory: ["left_command"],
-      //          },
-      //        },
-      //        to: [
-      //          {
-      //            key_code: "tab",
-      //          },
-      //        ],
-      //      },
     ],
   },
+
   ...createHyperSubLayers({
     spacebar: open(
       "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
     ),
     // b = "B"rowse
     b: {
-      t: open("https://twitter.com"),
-      // Quarterly "P"lan
-      p: open("https://mxstbr.com/cal"),
-      y: open("https://news.ycombinator.com"),
-      f: open("https://facebook.com"),
-      r: open("https://reddit.com"),
-      h: open("https://hashnode.com/draft"),
+      g: browser("gitlab.rebrandy"),
+      y: browser("youtube.com"),
+      m: browser("next.music.yandex.ru/"),
+      v: browser("http://localhost:8000/dashboard/#/"),
     },
     // o = "Open" applications
     o: {
       1: app("1Password"),
-      g: app("Google Chrome"),
-      c: app("Notion Calendar"),
-      v: app("Zed"),
-      d: app("Discord"),
-      s: app("Slack"),
-      e: app("Superhuman"),
-      n: app("Notion"),
-      t: app("Terminal"),
-      // Open todo list managed via *H*ypersonic
-      h: open(
-        "notion://www.notion.so/stellatehq/7b33b924746647499d906c55f89d5026"
-      ),
-      z: app("zoom.us"),
-      // "M"arkdown (Reflect.app)
-      m: app("Reflect"),
-      r: app("Reflect"),
-      f: app("Finder"),
-      // "i"Message
-      i: app("Texts"),
-      p: app("Spotify"),
-      a: app("iA Presenter"),
-      // "W"hatsApp has been replaced by Texts
-      w: open("Texts"),
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
-      ),
+      t: openWithEnv("/Applications/tauri.app/Contents/MacOS/tauri"),
+      n: app("Obsidian"),
+      c: app("Telegram"),
+      a: app("Arc"),
+      v: app("Visual Studio Code"),
     },
 
     // TODO: This doesn't quite work yet.
@@ -108,7 +71,7 @@ const rules: KarabinerRules[] = [
     //     open -a "Visual Studio Code.app"
     //     sleep 0.2
     //     open -g "raycast://customWindowManagementCommand?position=topLeft&relativeWidth=0.5"
-
+  
     //     open -a "Terminal.app"
     //     sleep 0.2
     //     open -g "raycast://customWindowManagementCommand?position=topRight&relativeWidth=0.5"
@@ -117,22 +80,6 @@ const rules: KarabinerRules[] = [
 
     // w = "Window" via rectangle.app
     w: {
-      semicolon: {
-        description: "Window: Hide",
-        to: [
-          {
-            key_code: "h",
-            modifiers: ["right_command"],
-          },
-        ],
-      },
-      y: rectangle("previous-display"),
-      o: rectangle("next-display"),
-      k: rectangle("top-half"),
-      j: rectangle("bottom-half"),
-      h: rectangle("left-half"),
-      l: rectangle("right-half"),
-      f: rectangle("maximize"),
       u: {
         description: "Window: Previous Tab",
         to: [
@@ -289,19 +236,6 @@ const rules: KarabinerRules[] = [
       },
     },
 
-    // c = Musi*c* which isn't "m" because we want it to be on the left hand
-    c: {
-      p: {
-        to: [{ key_code: "play_or_pause" }],
-      },
-      n: {
-        to: [{ key_code: "fastforward" }],
-      },
-      b: {
-        to: [{ key_code: "rewind" }],
-      },
-    },
-
     // r = "Raycast"
     r: {
       c: open("raycast://extensions/thomas/color-picker/pick-color"),
@@ -315,9 +249,6 @@ const rules: KarabinerRules[] = [
       p: open("raycast://extensions/raycast/raycast/confetti"),
       a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
       s: open("raycast://extensions/peduarte/silent-mention/index"),
-      h: open(
-        "raycast://extensions/raycast/clipboard-history/clipboard-history"
-      ),
       1: open(
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
       ),
@@ -349,7 +280,7 @@ const rules: KarabinerRules[] = [
         ],
       },
     ],
-  },
+  }
 ];
 
 fs.writeFileSync(

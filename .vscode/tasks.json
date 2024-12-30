@@ -1,0 +1,13 @@
+{
+   "tasks": [
+     {
+       "label": "build",
+       "type": "shell",
+       "options": {
+         "cwd": "${workspaceFolder}"
+       },
+       "command": "pnpm build",
+       "problemMatcher": [],
+     },
+   ]
+ }
