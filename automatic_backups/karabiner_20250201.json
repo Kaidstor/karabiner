@@ -15,12 +15,14 @@
                 "from": {
                   "key_code": "caps_lock",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control", "left_option"]
+                  },
                   {
                     "set_variable": {
                       "name": "hyper",
@@ -59,9 +61,7 @@
                 "from": {
                   "key_code": "j",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -103,9 +103,7 @@
                 "from": {
                   "key_code": "b",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "to_after_key_up": [
@@ -158,33 +156,7 @@
                 "from": {
                   "key_code": "8",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_b",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "to": [
-                  {
-                    "shell_command": "osascript -e '\n    tell application \"Arc\"\n      if (count of windows) is 0 then\n        make new window\n      end if\n\n      tell front window\n        make new tab with properties {URL:\"https://animedia.lol\"}\n      end tell\n\n      activate\n    end tell\n  '"
-                  }
-                ],
-                "description": "Open https://animedia.lol",
-                "type": "basic",
-                "from": {
-                  "key_code": "a",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -206,9 +178,7 @@
                 "from": {
                   "key_code": "y",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -230,9 +200,7 @@
                 "from": {
                   "key_code": "g",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -254,9 +222,7 @@
                 "from": {
                   "key_code": "n",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -278,9 +244,7 @@
                 "from": {
                   "key_code": "v",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -302,9 +266,7 @@
                 "from": {
                   "key_code": "m",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -326,9 +288,7 @@
                 "from": {
                   "key_code": "h",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -350,9 +310,7 @@
                 "from": {
                   "key_code": "o",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "to_after_key_up": [
@@ -405,9 +363,7 @@
                 "from": {
                   "key_code": "1",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -429,9 +385,7 @@
                 "from": {
                   "key_code": "2",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -453,9 +407,7 @@
                 "from": {
                   "key_code": "g",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -469,17 +421,15 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a '/System/Volumes/Data/Applications/tcp-client.app'"
+                    "shell_command": "export PATH=/usr/local/bin:/Users/kaidstor/.bun/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin; open -a /Applications/tauri.app/Contents/MacOS/tauri"
                   }
                 ],
-                "description": "Open -a '/System/Volumes/Data/Applications/tcp-client.app'",
+                "description": "Open /Applications/tauri.app/Contents/MacOS/tauri with env",
                 "type": "basic",
                 "from": {
                   "key_code": "t",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -501,9 +451,7 @@
                 "from": {
                   "key_code": "n",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -525,9 +473,7 @@
                 "from": {
                   "key_code": "c",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -549,9 +495,7 @@
                 "from": {
                   "key_code": "a",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -565,17 +509,15 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'Cursor.app'"
+                    "shell_command": "open -a 'Trae.app'"
                   }
                 ],
-                "description": "Open -a 'Cursor.app'",
+                "description": "Open -a 'Trae.app'",
                 "type": "basic",
                 "from": {
                   "key_code": "v",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -597,9 +539,7 @@
                 "from": {
                   "key_code": "w",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -621,9 +561,7 @@
                 "from": {
                   "key_code": "v",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "to_after_key_up": [
@@ -675,9 +613,7 @@
                 "from": {
                   "key_code": "h",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -698,9 +634,7 @@
                 "from": {
                   "key_code": "j",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -721,9 +655,7 @@
                 "from": {
                   "key_code": "k",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [
@@ -744,9 +676,115 @@
                 "from": {
                   "key_code": "l",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "f",
+                    "modifiers": ["right_control"]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "j",
+                    "modifiers": ["right_control"]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "d",
+                    "modifiers": ["right_shift", "right_command"]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "page_down"
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "page_up"
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "optional": ["any"]
                   }
                 },
                 "conditions": [

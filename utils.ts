@@ -1,4 +1,4 @@
-import { To, KeyCode, Manipulator, KarabinerRules } from "./types";
+import type { To, KeyCode, Manipulator, KarabinerRules } from "./types";
 
 /**
  * Custom way to describe a command in a layer
@@ -21,7 +21,7 @@ type HyperKeySublayer = {
 export function createHyperSubLayer(
   sublayer_key: KeyCode,
   commands: HyperKeySublayer,
-  allSubLayerVariables: string[]
+  allSubLayerVariables: string[],
 ): Manipulator[] {
   const subLayerVariableName = generateSubLayerVariableName(sublayer_key);
 
@@ -60,7 +60,7 @@ export function createHyperSubLayer(
       conditions: [
         ...allSubLayerVariables
           .filter(
-            (subLayerVariable) => subLayerVariable !== subLayerVariableName
+            (subLayerVariable) => subLayerVariable !== subLayerVariableName,
           )
           .map((subLayerVariable) => ({
             type: "variable_if" as const,
@@ -93,7 +93,7 @@ export function createHyperSubLayer(
             value: 1,
           },
         ],
-      })
+      }),
     ),
   ];
 }
@@ -144,13 +144,13 @@ export function createHyperSubLayers(subLayers: {
           manipulators: createHyperSubLayer(
             key as KeyCode,
             value,
-            allSubLayerVariables
+            allSubLayerVariables,
           ),
-        }
+        },
   );
 }
 
-function generateSubLayerVariableName(key: KeyCode) {
+function generateSubLayerVariableName(key: KeyCode): string {
   return `hyper_sublayer_${key}`;
 }
 
@@ -166,7 +166,7 @@ export function open(...what: string[]): LayerCommand {
   };
 }
 
-const isValidURL = (url: string) => {
+const isValidURL = (url: string): undefined => {
   if (!url) {
     throw new Error("Please set a URL!");
   } else if (url.trim().length === 0) {
@@ -175,17 +175,21 @@ const isValidURL = (url: string) => {
 
   try {
     new URL(url);
-  } catch (error) {
+  } catch {
     throw new Error("The URL is invalid!");
   }
-}
+};
 
-export function openWithEnv(path: string) {
+export function openWithEnv(path: string): {
+  to: { shell_command: string }[];
+  description: string;
+} {
   return {
     to: [
-    {
-        "shell_command": `export PATH=/usr/local/bin:/Users/kaidstor/.bun/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin; open -a ${path}`
-    }],
+      {
+        shell_command: `export PATH=/usr/local/bin:/Users/kaidstor/.bun/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin; open -a ${path}`,
+      },
+    ],
     description: `Open ${path} with env`,
   };
 }
@@ -213,9 +217,11 @@ export function browser(url: string): LayerCommand {
   `;
 
   return {
-    to: [{
-      shell_command: `osascript -e '${script}'`,
-    }],
+    to: [
+      {
+        shell_command: `osascript -e '${script}'`,
+      },
+    ],
     description: `Open ${url}`,
   };
 }
@@ -251,4 +257,3 @@ export function shell(
 export function app(name: string): LayerCommand {
   return open(`-a '${name}.app'`);
 }
-

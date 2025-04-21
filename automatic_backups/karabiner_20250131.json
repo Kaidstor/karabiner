@@ -174,30 +174,6 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript -e '\n    tell application \"Arc\"\n      if (count of windows) is 0 then\n        make new window\n      end if\n\n      tell front window\n        make new tab with properties {URL:\"https://animedia.lol\"}\n      end tell\n\n      activate\n    end tell\n  '"
-                  }
-                ],
-                "description": "Open https://animedia.lol",
-                "type": "basic",
-                "from": {
-                  "key_code": "a",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_b",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "to": [
-                  {
                     "shell_command": "osascript -e '\n    tell application \"Arc\"\n      if (count of windows) is 0 then\n        make new window\n      end if\n\n      tell front window\n        make new tab with properties {URL:\"https://youtube.com\"}\n      end tell\n\n      activate\n    end tell\n  '"
                   }
                 ],
@@ -469,10 +445,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a '/System/Volumes/Data/Applications/tcp-client.app'"
+                    "shell_command": "export PATH=/usr/local/bin:/Users/kaidstor/.bun/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin; open -a /Applications/tauri.app/Contents/MacOS/tauri"
                   }
                 ],
-                "description": "Open -a '/System/Volumes/Data/Applications/tcp-client.app'",
+                "description": "Open /Applications/tauri.app/Contents/MacOS/tauri with env",
                 "type": "basic",
                 "from": {
                   "key_code": "t",
@@ -565,10 +541,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'Cursor.app'"
+                    "shell_command": "open -a 'Trae.app'"
                   }
                 ],
-                "description": "Open -a 'Cursor.app'",
+                "description": "Open -a 'Trae.app'",
                 "type": "basic",
                 "from": {
                   "key_code": "v",
@@ -743,6 +719,131 @@
                 "type": "basic",
                 "from": {
                   "key_code": "l",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "f",
+                    "modifiers": [
+                      "right_control"
+                    ]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "j",
+                    "modifiers": [
+                      "right_control"
+                    ]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "d",
+                    "modifiers": [
+                      "right_shift",
+                      "right_command"
+                    ]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "page_down"
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_v",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "key_code": "page_up"
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "i",
                   "modifiers": {
                     "optional": [
                       "any"

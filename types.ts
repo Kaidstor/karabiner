@@ -142,7 +142,6 @@ export interface To {
    * @example: sleep system
    * @see: {@link https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/to/software_function/iokit_power_management_sleep_system/}
    */
-  software_function?: SoftwareFunction;
 }
 
 export interface MouseKey {
@@ -151,10 +150,6 @@ export interface MouseKey {
   speed_multiplier?: number;
   vertical_wheel?: number;
   horizontal_wheel?: number;
-}
-
-export interface SoftwareFunction {
-  iokit_power_management_sleep_system?: {};
 }
 
 export type KeyCode =

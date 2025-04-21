@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Сервис для путешествий без лишних забот">
+    <title>KK VPN</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .nav {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav li {
+        display: inline;
+        margin-left: 15px;
+      }
+      .nav a {
+        text-decoration: none;
+        color: #2383e2;
+      }
+      section {
+        margin-bottom: 20px;
+      }
+      .card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+      }
+      .card h2 {
+        margin-top: 0;
+        font-size: 20px;
+      }
+      .copy-btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #2383e2;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .copy-btn:hover {
+        background-color: #1a6bb8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>KK VPN</h1>
+        <ul class="nav">
+          <li><a href="https://t.me/kk_vpn_sup" target="_blank">Поддержка</a></li>
+        </ul>
+      </header>
+      
+      <section>
+        <h2>Подписка</h2>
+        <button class="copy-btn" id="btn-copy-link">Скопировать ссылку</button>
+      </section>
+      
+      <section class="card">
+        <h2>Статус</h2>
+        <p>
+          {% if user.status.value == 'active' %}
+            😊 Активна
+          {% elif user.status.value == 'limited' %}
+            ⚠️ Ограничена
+          {% elif user.status.value == 'expired' %}
+            ⏰ Истекла
+          {% elif user.status.value == 'disabled' %}
+            ❌ Отключена
+          {% endif %}
+        </p>
+      </section>
+      
+      <section class="card">
+        <h2>Срок</h2>
+        <p>
+          {% if not user.expire %}
+            Навсегда
+          {% else %}
+            {% set date = (user.expire | datetime).split()[0].split('-')[::-1] %}
+            До {{ '.'.join(date) }}
+          {% endif %}
+        </p>
+      </section>
+      
+      <section class="card">
+        <h2>Трафик</h2>
+        <p>
+          {{ user.used_traffic | bytesformat }} из {% if not user.data_limit %}∞{% else %}{{ user.data_limit | bytesformat }}{% endif %}
+        </p>
+      </section>
+      
+      <section class="card">
+        <h2>Сброс трафика</h2>
+        <p>
+          {% if user.data_limit_reset_strategy == 'no_reset' %}
+            Нет
+          {% elif user.data_limit_reset_strategy == 'day' %}
+            Ежедневно
+          {% elif user.data_limit_reset_strategy == 'week' %}
+            Еженедельно
+          {% elif user.data_limit_reset_strategy == 'month' %}
+            Ежемесячно
+          {% elif user.data_limit_reset_strategy == 'year' %}
+            Ежегодно
+          {% endif %}
+        </p>
+      </section>
+    </div>
+    
+    <script>
+      document.getElementById('btn-copy-link').addEventListener('click', function() {
+        navigator.clipboard.writeText('{{ user.subscription_url }}')
+          .then(function() {
+            alert('Скопировано в буфер обмена');
+          });
+      });
+    </script>
+  </body>
+</html>
